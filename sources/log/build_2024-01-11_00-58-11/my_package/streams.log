@@ -1,0 +1,23 @@
+[5.761s] Invoking command in '/home/pi/ws/src/build/my_package': PYTHONPATH=/home/pi/ws/src/build/my_package/prefix_override:/home/pi/ws/src/install/my_package/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/pi/ws/src/build/my_package/build --no-deps install_data
+[7.230s] running develop
+[7.231s] /usr/lib/python3/dist-packages/setuptools/command/easy_install.py:158: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.
+[7.232s]   warnings.warn(
+[7.237s] /usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[7.237s]   warnings.warn(
+[8.224s] running egg_info
+[8.227s] writing my_package.egg-info/PKG-INFO
+[8.228s] writing dependency_links to my_package.egg-info/dependency_links.txt
+[8.233s] writing entry points to my_package.egg-info/entry_points.txt
+[8.235s] writing requirements to my_package.egg-info/requires.txt
+[8.236s] writing top-level names to my_package.egg-info/top_level.txt
+[8.238s] reading manifest file 'my_package.egg-info/SOURCES.txt'
+[8.241s] writing manifest file 'my_package.egg-info/SOURCES.txt'
+[8.249s] running build_ext
+[8.255s] Creating /home/pi/ws/src/install/my_package/lib/python3.10/site-packages/my-package.egg-link (link to .)
+[8.258s] Installing logging_demo script to /home/pi/ws/src/install/my_package/lib/my_package
+[8.259s] Installing simple_publisher script to /home/pi/ws/src/install/my_package/lib/my_package
+[8.269s] Installing simple_subscriber script to /home/pi/ws/src/install/my_package/lib/my_package
+[8.273s] 
+[8.275s] Installed /home/pi/ws/src/build/my_package
+[8.280s] running install_data
+[8.492s] Invoked command in '/home/pi/ws/src/build/my_package' returned '0': PYTHONPATH=/home/pi/ws/src/build/my_package/prefix_override:/home/pi/ws/src/install/my_package/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/pi/ws/src/build/my_package/build --no-deps install_data

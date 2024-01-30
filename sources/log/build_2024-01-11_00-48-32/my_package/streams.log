@@ -1,0 +1,30 @@
+[6.626s] Invoking command in '/home/pi/ws/src/build/my_package': PYTHONPATH=/home/pi/ws/src/build/my_package/prefix_override:/home/pi/ws/src/install/my_package/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/pi/ws/src/build/my_package/build --no-deps install_data
+[8.340s] running develop
+[8.342s] /usr/lib/python3/dist-packages/setuptools/command/easy_install.py:158: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.
+[8.342s]   warnings.warn(
+[8.349s] /usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[8.350s]   warnings.warn(
+[9.550s] running egg_info
+[9.551s] creating my_package.egg-info
+[9.552s] writing my_package.egg-info/PKG-INFO
+[9.553s] writing dependency_links to my_package.egg-info/dependency_links.txt
+[9.556s] writing entry points to my_package.egg-info/entry_points.txt
+[9.562s] writing requirements to my_package.egg-info/requires.txt
+[9.563s] writing top-level names to my_package.egg-info/top_level.txt
+[9.565s] writing manifest file 'my_package.egg-info/SOURCES.txt'
+[9.569s] reading manifest file 'my_package.egg-info/SOURCES.txt'
+[9.574s] writing manifest file 'my_package.egg-info/SOURCES.txt'
+[9.587s] running build_ext
+[9.589s] Creating /home/pi/ws/src/install/my_package/lib/python3.10/site-packages/my-package.egg-link (link to .)
+[9.601s] Installing logging_demo script to /home/pi/ws/src/install/my_package/lib/my_package
+[9.604s] Installing simple_publisher script to /home/pi/ws/src/install/my_package/lib/my_package
+[9.606s] Installing simple_subscriber script to /home/pi/ws/src/install/my_package/lib/my_package
+[9.611s] 
+[9.612s] Installed /home/pi/ws/src/build/my_package
+[9.613s] running install_data
+[9.615s] creating /home/pi/ws/src/install/my_package/share/ament_index
+[9.616s] creating /home/pi/ws/src/install/my_package/share/ament_index/resource_index
+[9.618s] creating /home/pi/ws/src/install/my_package/share/ament_index/resource_index/packages
+[9.619s] copying resource/my_package -> /home/pi/ws/src/install/my_package/share/ament_index/resource_index/packages
+[9.623s] copying package.xml -> /home/pi/ws/src/install/my_package/share/my_package
+[9.861s] Invoked command in '/home/pi/ws/src/build/my_package' returned '0': PYTHONPATH=/home/pi/ws/src/build/my_package/prefix_override:/home/pi/ws/src/install/my_package/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/pi/ws/src/build/my_package/build --no-deps install_data

@@ -1,0 +1,146 @@
+[0.000000] (-) TimerEvent: {}
+[0.001850] (amr) JobQueued: {'identifier': 'amr', 'dependencies': OrderedDict()}
+[0.002555] (my_package) JobQueued: {'identifier': 'my_package', 'dependencies': OrderedDict()}
+[0.002970] (amr) JobStarted: {'identifier': 'amr'}
+[0.098737] (-) TimerEvent: {}
+[0.199913] (-) TimerEvent: {}
+[0.301117] (-) TimerEvent: {}
+[0.376686] (my_package) JobStarted: {'identifier': 'my_package'}
+[0.401384] (-) TimerEvent: {}
+[0.502346] (-) TimerEvent: {}
+[0.603251] (-) TimerEvent: {}
+[0.704740] (-) TimerEvent: {}
+[0.806747] (-) TimerEvent: {}
+[0.907547] (-) TimerEvent: {}
+[1.008505] (-) TimerEvent: {}
+[1.109399] (-) TimerEvent: {}
+[1.210358] (-) TimerEvent: {}
+[1.311201] (-) TimerEvent: {}
+[1.412043] (-) TimerEvent: {}
+[1.512879] (-) TimerEvent: {}
+[1.613684] (-) TimerEvent: {}
+[1.714500] (-) TimerEvent: {}
+[1.815347] (-) TimerEvent: {}
+[1.916393] (-) TimerEvent: {}
+[2.017776] (-) TimerEvent: {}
+[2.118903] (-) TimerEvent: {}
+[2.219803] (-) TimerEvent: {}
+[2.321516] (-) TimerEvent: {}
+[2.422381] (-) TimerEvent: {}
+[2.523334] (-) TimerEvent: {}
+[2.624218] (-) TimerEvent: {}
+[2.725090] (-) TimerEvent: {}
+[2.825967] (-) TimerEvent: {}
+[2.926789] (-) TimerEvent: {}
+[3.027598] (-) TimerEvent: {}
+[3.128447] (-) TimerEvent: {}
+[3.229281] (-) TimerEvent: {}
+[3.330147] (-) TimerEvent: {}
+[3.431129] (-) TimerEvent: {}
+[3.532301] (-) TimerEvent: {}
+[3.634117] (-) TimerEvent: {}
+[3.735086] (-) TimerEvent: {}
+[3.836161] (-) TimerEvent: {}
+[3.937123] (-) TimerEvent: {}
+[4.038213] (-) TimerEvent: {}
+[4.139446] (-) TimerEvent: {}
+[4.240423] (-) TimerEvent: {}
+[4.341396] (-) TimerEvent: {}
+[4.442311] (-) TimerEvent: {}
+[4.543229] (-) TimerEvent: {}
+[4.644731] (-) TimerEvent: {}
+[4.745520] (-) TimerEvent: {}
+[4.846401] (-) TimerEvent: {}
+[4.947381] (-) TimerEvent: {}
+[5.048400] (-) TimerEvent: {}
+[5.149316] (-) TimerEvent: {}
+[5.250496] (-) TimerEvent: {}
+[5.351452] (-) TimerEvent: {}
+[5.452309] (-) TimerEvent: {}
+[5.553142] (-) TimerEvent: {}
+[5.654232] (-) TimerEvent: {}
+[5.755866] (-) TimerEvent: {}
+[5.852196] (amr) Command: {'cmd': ['/usr/bin/python3', 'setup.py', 'develop', '--editable', '--build-directory', '/home/pi/ws/src/build/amr/build', '--no-deps', 'install_data'], 'cwd': '/home/pi/ws/src/build/amr', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'pi', 'SSH_CLIENT': '192.168.1.3 49849 22', 'XDG_SESSION_TYPE': 'tty', 'GIT_ASKPASS': '/home/pi/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib', 'BROWSER': '/home/pi/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh', 'MOTD_SHOWN': 'pam', 'HOME': '/home/pi', 'TERM_PROGRAM_VERSION': '1.85.2', 'VSCODE_IPC_HOOK_CLI': '/run/user/1000/vscode-ipc-11554b01-7ef4-4cf7-8399-80ba197752ad.sock', 'ROS_PYTHON_VERSION': '3', 'VSCODE_GIT_ASKPASS_MAIN': '/home/pi/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/home/pi/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'COLCON_PREFIX_PATH': '/home/pi/ws/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'pi', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '1', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/home/pi/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/home/pi/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1000', 'LANG': 'C.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-bab3fa7a8f.sock', 'TERM_PROGRAM': 'vscode', 'AMENT_PREFIX_PATH': '/home/pi/ws/install/my_package:/home/pi/ws/install/amr:/opt/ros/humble', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'PWD': '/home/pi/ws/src/build/amr', 'SSH_CONNECTION': '192.168.1.3 49849 192.168.1.14 22', 'PYTHONPATH': '/home/pi/ws/src/build/amr/prefix_override:/home/pi/ws/src/install/amr/lib/python3.10/site-packages:/home/pi/ws/build/my_package:/home/pi/ws/install/my_package/lib/python3.10/site-packages:/home/pi/ws/build/amr:/home/pi/ws/install/amr/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1'}, 'shell': False}
+[5.869958] (-) TimerEvent: {}
+[5.876457] (my_package) Command: {'cmd': ['/usr/bin/python3', 'setup.py', 'develop', '--editable', '--build-directory', '/home/pi/ws/src/build/my_package/build', '--no-deps', 'install_data'], 'cwd': '/home/pi/ws/src/build/my_package', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'pi', 'SSH_CLIENT': '192.168.1.3 49849 22', 'XDG_SESSION_TYPE': 'tty', 'GIT_ASKPASS': '/home/pi/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass.sh', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib', 'BROWSER': '/home/pi/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh', 'MOTD_SHOWN': 'pam', 'HOME': '/home/pi', 'TERM_PROGRAM_VERSION': '1.85.2', 'VSCODE_IPC_HOOK_CLI': '/run/user/1000/vscode-ipc-11554b01-7ef4-4cf7-8399-80ba197752ad.sock', 'ROS_PYTHON_VERSION': '3', 'VSCODE_GIT_ASKPASS_MAIN': '/home/pi/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js', 'VSCODE_GIT_ASKPASS_NODE': '/home/pi/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/node', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'COLCON_PREFIX_PATH': '/home/pi/ws/install', 'ROS_DISTRO': 'humble', 'LOGNAME': 'pi', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'TERM': 'xterm-256color', 'XDG_SESSION_ID': '1', 'ROS_LOCALHOST_ONLY': '0', 'PATH': '/home/pi/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli:/home/pi/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'XDG_RUNTIME_DIR': '/run/user/1000', 'LANG': 'C.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'VSCODE_GIT_IPC_HANDLE': '/run/user/1000/vscode-git-bab3fa7a8f.sock', 'TERM_PROGRAM': 'vscode', 'AMENT_PREFIX_PATH': '/home/pi/ws/install/my_package:/home/pi/ws/install/amr:/opt/ros/humble', 'SHELL': '/bin/bash', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'VSCODE_GIT_ASKPASS_EXTRA_ARGS': '', 'PWD': '/home/pi/ws/src/build/my_package', 'SSH_CONNECTION': '192.168.1.3 49849 192.168.1.14 22', 'PYTHONPATH': '/home/pi/ws/src/build/my_package/prefix_override:/home/pi/ws/src/install/my_package/lib/python3.10/site-packages:/home/pi/ws/build/my_package:/home/pi/ws/install/my_package/lib/python3.10/site-packages:/home/pi/ws/build/amr:/home/pi/ws/install/amr/lib/python3.10/site-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1'}, 'shell': False}
+[5.970159] (-) TimerEvent: {}
+[6.072519] (-) TimerEvent: {}
+[6.173515] (-) TimerEvent: {}
+[6.274467] (-) TimerEvent: {}
+[6.375466] (-) TimerEvent: {}
+[6.476388] (-) TimerEvent: {}
+[6.577289] (-) TimerEvent: {}
+[6.678284] (-) TimerEvent: {}
+[6.779100] (-) TimerEvent: {}
+[6.880112] (-) TimerEvent: {}
+[6.981012] (-) TimerEvent: {}
+[7.081799] (-) TimerEvent: {}
+[7.182807] (-) TimerEvent: {}
+[7.283752] (-) TimerEvent: {}
+[7.288213] (amr) StdoutLine: {'line': b'running develop\n'}
+[7.291267] (amr) StderrLine: {'line': b'/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:158: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.\n'}
+[7.292227] (amr) StderrLine: {'line': b'  warnings.warn(\n'}
+[7.296562] (amr) StderrLine: {'line': b'/usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.\n'}
+[7.297405] (amr) StderrLine: {'line': b'  warnings.warn(\n'}
+[7.318436] (my_package) StdoutLine: {'line': b'running develop\n'}
+[7.320272] (my_package) StderrLine: {'line': b'/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:158: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.\n'}
+[7.321290] (my_package) StderrLine: {'line': b'  warnings.warn(\n'}
+[7.325952] (my_package) StderrLine: {'line': b'/usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.\n'}
+[7.328763] (my_package) StderrLine: {'line': b'  warnings.warn(\n'}
+[7.383973] (-) TimerEvent: {}
+[7.484767] (-) TimerEvent: {}
+[7.585568] (-) TimerEvent: {}
+[7.686485] (-) TimerEvent: {}
+[7.787395] (-) TimerEvent: {}
+[7.888735] (-) TimerEvent: {}
+[7.989566] (-) TimerEvent: {}
+[8.090446] (-) TimerEvent: {}
+[8.191390] (-) TimerEvent: {}
+[8.216250] (amr) StdoutLine: {'line': b'running egg_info\n'}
+[8.217654] (amr) StdoutLine: {'line': b'writing amr.egg-info/PKG-INFO\n'}
+[8.218855] (amr) StdoutLine: {'line': b'writing dependency_links to amr.egg-info/dependency_links.txt\n'}
+[8.220693] (amr) StdoutLine: {'line': b'writing entry points to amr.egg-info/entry_points.txt\n'}
+[8.221920] (amr) StdoutLine: {'line': b'writing requirements to amr.egg-info/requires.txt\n'}
+[8.223230] (amr) StdoutLine: {'line': b'writing top-level names to amr.egg-info/top_level.txt\n'}
+[8.235002] (amr) StdoutLine: {'line': b"reading manifest file 'amr.egg-info/SOURCES.txt'\n"}
+[8.238197] (amr) StdoutLine: {'line': b"writing manifest file 'amr.egg-info/SOURCES.txt'\n"}
+[8.246085] (amr) StdoutLine: {'line': b'running build_ext\n'}
+[8.248070] (amr) StdoutLine: {'line': b'Creating /home/pi/ws/src/install/amr/lib/python3.10/site-packages/amr.egg-link (link to .)\n'}
+[8.249547] (my_package) StdoutLine: {'line': b'running egg_info\n'}
+[8.250334] (my_package) StdoutLine: {'line': b'writing my_package.egg-info/PKG-INFO\n'}
+[8.251535] (my_package) StdoutLine: {'line': b'writing dependency_links to my_package.egg-info/dependency_links.txt\n'}
+[8.252523] (my_package) StdoutLine: {'line': b'writing entry points to my_package.egg-info/entry_points.txt\n'}
+[8.253293] (my_package) StdoutLine: {'line': b'writing requirements to my_package.egg-info/requires.txt\n'}
+[8.254851] (my_package) StdoutLine: {'line': b'writing top-level names to my_package.egg-info/top_level.txt\n'}
+[8.256873] (amr) StdoutLine: {'line': b'Installing UI_plotting script to /home/pi/ws/src/install/amr/lib/amr\n'}
+[8.257890] (amr) StdoutLine: {'line': b'Installing hardware_interface script to /home/pi/ws/src/install/amr/lib/amr\n'}
+[8.258540] (amr) StdoutLine: {'line': b'Installing simple_publisher script to /home/pi/ws/src/install/amr/lib/amr\n'}
+[8.259272] (amr) StdoutLine: {'line': b'Installing simple_publisher_step script to /home/pi/ws/src/install/amr/lib/amr\n'}
+[8.261045] (amr) StdoutLine: {'line': b'Installing simple_subscriber script to /home/pi/ws/src/install/amr/lib/amr\n'}
+[8.262852] (amr) StdoutLine: {'line': b'\n'}
+[8.267891] (amr) StdoutLine: {'line': b'Installed /home/pi/ws/src/build/amr\n'}
+[8.269492] (amr) StdoutLine: {'line': b'running install_data\n'}
+[8.271008] (my_package) StdoutLine: {'line': b"reading manifest file 'my_package.egg-info/SOURCES.txt'\n"}
+[8.272598] (my_package) StdoutLine: {'line': b"writing manifest file 'my_package.egg-info/SOURCES.txt'\n"}
+[8.284059] (my_package) StdoutLine: {'line': b'running build_ext\n'}
+[8.286008] (my_package) StdoutLine: {'line': b'Creating /home/pi/ws/src/install/my_package/lib/python3.10/site-packages/my-package.egg-link (link to .)\n'}
+[8.291733] (-) TimerEvent: {}
+[8.293746] (my_package) StdoutLine: {'line': b'Installing logging_demo script to /home/pi/ws/src/install/my_package/lib/my_package\n'}
+[8.295151] (my_package) StdoutLine: {'line': b'Installing simple_publisher script to /home/pi/ws/src/install/my_package/lib/my_package\n'}
+[8.296856] (my_package) StdoutLine: {'line': b'Installing simple_subscriber script to /home/pi/ws/src/install/my_package/lib/my_package\n'}
+[8.300134] (my_package) StdoutLine: {'line': b'\n'}
+[8.304857] (my_package) StdoutLine: {'line': b'Installed /home/pi/ws/src/build/my_package\n'}
+[8.307153] (my_package) StdoutLine: {'line': b'running install_data\n'}
+[8.392098] (-) TimerEvent: {}
+[8.453059] (amr) CommandEnded: {'returncode': 0}
+[8.492219] (-) TimerEvent: {}
+[8.593706] (-) TimerEvent: {}
+[8.695388] (-) TimerEvent: {}
+[8.798005] (-) TimerEvent: {}
+[8.804440] (amr) JobEnded: {'identifier': 'amr', 'rc': 0}
+[8.810946] (my_package) CommandEnded: {'returncode': 0}
+[8.898274] (-) TimerEvent: {}
+[8.999955] (-) TimerEvent: {}
+[9.104175] (-) TimerEvent: {}
+[9.118703] (my_package) JobEnded: {'identifier': 'my_package', 'rc': 0}
+[9.123009] (-) EventReactorShutdown: {}
