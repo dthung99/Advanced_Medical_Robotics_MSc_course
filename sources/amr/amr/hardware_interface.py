@@ -12,7 +12,7 @@ class HardwareInterfaceNode(Node):
         super().__init__('hardware_interface_ros')  # Initialize the ROS node
 
         self.get_logger().info('node is alive')  # Log message indicating the node is running
-        self.get_logger().set_level(LoggingSeverity.INFO)  # Increasing logging severity to avoid continuous printing to terminal
+        self.get_logger().set_level(LoggingSeverity.ERROR)  # Increasing logging severity to avoid continuous printing to terminal
 
         # Dynamixel motor control related constants
         self.ADDR_TORQUE_ENABLE = 64  # Address for torque enable
@@ -41,7 +41,7 @@ class HardwareInterfaceNode(Node):
         # Limits for position, velocity, and current to prevent damage
         self.LIMIT_POS = 100
         self.LIMIT_VEL = 10
-        self.LIMIT_CURRENT = 500 #500
+        self.LIMIT_CURRENT = 500
 
         self.limit_pos_tol = 1  # Tolerance for position limit checking
 
@@ -330,7 +330,7 @@ class HardwareInterfaceNode(Node):
                     self.set_vel(id, 0.0)  # Stop the joint to prevent exceeding the limit
 
     
-        # self.get_logger().info("%s" % [(self.timer_period*self.joint_vel_all[0] + self.joint_pos_all[0]), (self.timer_period*self.joint_vel_all[1] + self.joint_pos_all[1])])
+        self.get_logger().info("%s" % [(self.timer_period*self.joint_vel_all[0] + self.joint_pos_all[0]), (self.timer_period*self.joint_vel_all[1] + self.joint_pos_all[1])])
 
         # Populate state message
         state_msg.data.extend(self.joint_pos_all)

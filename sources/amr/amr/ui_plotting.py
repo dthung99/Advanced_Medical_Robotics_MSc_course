@@ -73,3 +73,27 @@ def main(args=None):
 # This condition checks if the script is executed directly (not imported)
 if __name__ == '__main__':
     main()  # Execute the main function
+
+
+
+
+
+# # Importing necessary libraries from ROS2 Python client library
+# import rclpy
+# from rclpy.node import Node
+# from std_msgs.msg import String
+# from amr.module_kinematics import Forward_Kinematics
+# from std_msgs.msg import Float32MultiArray
+# import threading
+# import time
+# import numpy as np
+# import matplotlib.pyplot as plt 
+
+# # The main function which serves as the entry point for the program
+# def main(args=None):
+#     rclpy.init(args=args)
+#     print(2)
+
+# # This condition checks if the script is executed directly (not imported)
+# if __name__ == '__main__':
+#     main()  # Execute the main function

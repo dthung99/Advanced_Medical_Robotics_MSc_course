@@ -7,7 +7,7 @@ class UI_send_target(Node):
     def __init__(self):
         super().__init__('ui_send_target')
         # Create a publisher
-        self.sendtarget = self.create_publisher(Float32MultiArray,'/control_target',1)
+        self.sendtarget = self.create_publisher(Float32MultiArray,'/final_target',1)
         
 def main(args=None):
     rclpy.init(args=args)  # Initialize the ROS2 Python client library

@@ -20,14 +20,13 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'ik_controller_null_space = amr.ik_controller_null_space:main',                    
             'hardware_interface = amr.hardware_interface:main',
-            'simple_publisher = amr.simple_publisher:main',
             'controller_weighted_inverse_kinematic = amr.controller_weighted_inverse_kinematic:main',
-            'control_pathway_generation = amr.control_pathway_generation:main',
+            'command_pathway_generation = amr.command_pathway_generation:main',
             'ui_plotting = amr.ui_plotting:main',
+            'ui_send_target_for_pathway = amr.ui_send_target_for_pathway:main',
             'ui_send_target = amr.ui_send_target:main',
-            
+            'test_node = amr.test_node:main',          
         ],
     },
 )
