@@ -1,9 +1,0 @@
-[console_scripts]
-UI_plotting = amr.UI_plotting:main
-UI_plotting_2 = amr.UI_plotting_2:main
-control_pathway_generation = amr.control_pathway_generation:main
-hardware_interface = amr.hardware_interface:main
-ik_controller = amr.ik_controller:main
-ik_controller_null_space = amr.ik_controller_null_space:main
-simple_publisher = amr.simple_publisher:main
-
