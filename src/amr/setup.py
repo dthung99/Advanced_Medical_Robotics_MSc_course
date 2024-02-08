@@ -21,11 +21,13 @@ setup(
     entry_points={
         'console_scripts': [
             'hardware_interface = amr.hardware_interface:main',
+            'hardware_interface_motor_only = amr.hardware_interface_motor_only:main',            
             'ui_plotting = amr.ui_plotting:main',
             'ui_send_target_for_pathway = amr.ui_send_target_for_pathway:main',
             'ui_send_target = amr.ui_send_target:main',
             'command_pathway_generation = amr.command_pathway_generation:main',
             'speed_control_with_jacobian = amr.speed_control_with_jacobian:main',
+            'speed_control_in_null_space = amr.speed_control_in_null_space:main',
             'angle_control_with_jacobian_solver = amr.angle_control_with_jacobian_solver:main',
             'test_node = amr.test_node:main',          
         ],

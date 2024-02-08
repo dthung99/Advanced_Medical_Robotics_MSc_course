@@ -76,6 +76,27 @@ class Kinematics:
         else:
             return input_vector
 
+    def get_Velocity_near_Intended_Vector_needed_for_Target(self,
+                                                            target: np.ndarray,
+                                                            q0_vector: np.ndarray,
+                                                            d_error_clamping: float = np.finfo(float).max,
+                                                            k_damped_factor: float = 0,
+                                                            ) -> np.ndarray:
+        '''Calculate the joint velocity to get to target that is near q0
+        with error clamping, weight matrix, and jacobian damping'''
+        jacobian = self.Jacobian()
+        # weight_matrix = np.diag(weight_vector)
+        matrix_a =  np.linalg.inv(np.matmul(jacobian, jacobian.T) + k_damped_factor**2*np.eye(2))
+        # Calculate the pseudo inverse: J^T*inv(J*JT)
+        pseudo_inv = np.matmul(jacobian.T, matrix_a) 
+        # Calculate velocity needed in task space
+        task_space_vel = self.error_clamping(target - self.arm_3_position, d_error_clamping)
+        task_space_vel = task_space_vel[0:2]
+        # Calculate the target velocity
+        null_space_vector = np.matmul((np.eye(3) - np.matmul(pseudo_inv, jacobian)), q0_vector)
+        joint_space_vel = np.matmul(pseudo_inv, task_space_vel) + null_space_vector
+        return joint_space_vel
+    
 class Solver:
     def __init__(self) -> None:
         pass
@@ -126,6 +147,17 @@ class Solver:
             initial_joint_angle = np.rad2deg(initial_joint_angle)
         initial_joint_angle = (initial_joint_angle+180)%360-180
         return initial_joint_angle
+    
+class Dynamics_Optimizer:
+    def __init__(self) -> None:
+        pass
+    def get_Velocity_Vector_to_avoid_joint_limit(self,
+                                                 current_joint_state: np.ndarray, 
+                                                 joint_lower_limit: np.ndarray = np.array([-100, -100, -100]),
+                                                 joint_upper_limit: np.ndarray = np.array([100, 100, 100])) -> np.ndarray:
+        velocity_vector = (joint_upper_limit + joint_lower_limit - 2*current_joint_state)
+        velocity_vector = velocity_vector/np.linalg.norm(velocity_vector)
+        return velocity_vector
     
 
 
