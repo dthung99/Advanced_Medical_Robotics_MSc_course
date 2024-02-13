@@ -16,10 +16,15 @@ Creating /home/pi/ws/src/install/amr/lib/python3.10/site-packages/amr.egg-link (
 Installing angle_control_with_jacobian_solver script to /home/pi/ws/src/install/amr/lib/amr
 Installing command_pathway_generation script to /home/pi/ws/src/install/amr/lib/amr
 Installing hardware_interface script to /home/pi/ws/src/install/amr/lib/amr
+Installing hardware_interface_motor_only script to /home/pi/ws/src/install/amr/lib/amr
+Installing micro_pid_angle_control script to /home/pi/ws/src/install/amr/lib/amr
+Installing micro_pid_velocity_control script to /home/pi/ws/src/install/amr/lib/amr
+Installing speed_control_in_null_space script to /home/pi/ws/src/install/amr/lib/amr
 Installing speed_control_with_jacobian script to /home/pi/ws/src/install/amr/lib/amr
 Installing test_node script to /home/pi/ws/src/install/amr/lib/amr
 Installing ui_plotting script to /home/pi/ws/src/install/amr/lib/amr
 Installing ui_send_target script to /home/pi/ws/src/install/amr/lib/amr
+Installing ui_send_target_for_one_motor script to /home/pi/ws/src/install/amr/lib/amr
 Installing ui_send_target_for_pathway script to /home/pi/ws/src/install/amr/lib/amr
 
 Installed /home/pi/ws/src/build/amr
