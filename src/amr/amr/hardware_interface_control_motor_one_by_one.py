@@ -344,10 +344,8 @@ def main(args=None):
     rclpy.init(args=args)
     node = HardwareInterfaceNode()
     #node.main_loop()
-    try:
-        rclpy.spin(node)
-    except KeyboardInterrupt:
-        pass
+    rclpy.spin(node)
+    
     # Destroy the node explicitly
     # (optional - otherwise it will be done automatically
     # when the garbage collector destroys the node object)

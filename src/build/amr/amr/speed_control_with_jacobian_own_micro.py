@@ -9,7 +9,7 @@ class weighted_IK_Controller(Node):
     def __init__(self):
         super().__init__('controller_weighted_inverse_kinematic')
         # Set control parameters
-        self.d_error_clamping = 10
+        self.d_error_clamping = 15
         self.joint_weight = np.array([1,1,1])
         self.k_damped_factor = 1        
         # Declare needed variables
@@ -22,11 +22,7 @@ class weighted_IK_Controller(Node):
             self.get_command_target,
             1)
         self.command_target_subscriber
-        self.velocity_publisher_1 = self.create_publisher(Float32MultiArray,'/micro_control_target_1',1)
-        self.velocity_publisher_2 = self.create_publisher(Float32MultiArray,'/micro_control_target_2',1)
-        self.velocity_publisher_3 = self.create_publisher(Float32MultiArray,'/micro_control_target_3',1)
-        self.target_velocity_one_msg = Float32MultiArray()
-
+        self.subscriber_publisher = self.create_publisher(Float32MultiArray,'/micro_control_target',10)
     # Getting the target
     def get_command_target(self, msg):
         self.target = np.array(msg.data)
@@ -37,7 +33,7 @@ class weighted_IK_Controller(Node):
                 Float32MultiArray,
                 '/joint_state',
                 self.control_function,
-                1)
+                10)
             self.control_subscriber  # Dummy expression to avoid unused variable warning
             self.start_moving = True
     # Control the robot
@@ -48,13 +44,9 @@ class weighted_IK_Controller(Node):
                                                                                       weight_vector = self.joint_weight,
                                                                                       k_damped_factor = self.k_damped_factor)
         target_velocity = -target_velocity*180/np.pi
-        self.target_velocity_one_msg.data = [target_velocity[0]]
-        self.velocity_publisher_1.publish(self.target_velocity_one_msg)
-        self.target_velocity_one_msg.data = [target_velocity[1]]
-        self.velocity_publisher_2.publish(self.target_velocity_one_msg)
-        self.target_velocity_one_msg.data = [target_velocity[2]]
-        self.velocity_publisher_3.publish(self.target_velocity_one_msg)
-
+        target_velocity_msg = Float32MultiArray()
+        target_velocity_msg.data = target_velocity.tolist()
+        self.subscriber_publisher.publish(target_velocity_msg)
         # print(self.arm_kinematics.arm_3_position)
         # print(target_velocity)
         # print(self.target - self.arm_kinematics.arm_3_position)

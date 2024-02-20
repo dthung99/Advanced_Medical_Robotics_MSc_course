@@ -20,6 +20,9 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'Tsubscriber = amr.Tsubscriber:main',
+            'Tpublisher = amr.Tpublisher:main', 
+            'Thardware_interface = amr.Thardware_interface:main',
             'hardware_interface = amr.hardware_interface:main',
             'hardware_interface_motor_only = amr.hardware_interface_motor_only:main',            
             'ui_plotting = amr.ui_plotting:main',
@@ -36,8 +39,10 @@ setup(
             'micro_pid_velocity_control_1 = amr.micro_pid_velocity_control_1:main',
             'micro_pid_velocity_control_2 = amr.micro_pid_velocity_control_2:main',
             'micro_pid_velocity_control_3 = amr.micro_pid_velocity_control_3:main',
+            'micro_pid_velocity_control_3_motors = amr.micro_pid_velocity_control_3_motors:main',
             'micro_pid_velocity_control_combined_publisher = amr.micro_pid_velocity_control_combined_publisher:main',
-            'test_node = amr.test_node:main',          
+            'test_node = amr.test_node:main',   
+          
         ],
     },
 )
