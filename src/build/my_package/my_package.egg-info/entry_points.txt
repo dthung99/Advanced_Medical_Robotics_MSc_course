@@ -1,5 +1,0 @@
-[console_scripts]
-logging_demo = my_package.logging_demo:main
-simple_publisher = my_package.simple_publisher:main
-simple_subscriber = my_package.simple_subscriber:main
-

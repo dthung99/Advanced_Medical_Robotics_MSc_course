@@ -42,7 +42,9 @@ setup(
             'micro_pid_velocity_control_3_motors = amr.micro_pid_velocity_control_3_motors:main',
             'micro_pid_velocity_control_combined_publisher = amr.micro_pid_velocity_control_combined_publisher:main',
             'test_node = amr.test_node:main',   
-          
+            'contact_force = amr.contact_force:main',
+
+            'force_end_effector_control = amr.force_end_effector_control:main',
         ],
     },
 )

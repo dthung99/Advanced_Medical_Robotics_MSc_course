@@ -41,7 +41,7 @@ class HardwareInterfaceNode(Node):
         # Limits for position, velocity, and current to prevent damage
         self.LIMIT_POS = 100
         self.LIMIT_VEL = 10
-        self.LIMIT_CURRENT = 500
+        self.LIMIT_CURRENT = 1000
 
         self.limit_pos_tol = 1  # Tolerance for position limit checking
 

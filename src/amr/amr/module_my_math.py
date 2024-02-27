@@ -97,6 +97,9 @@ class Kinematics:
         joint_space_vel = np.matmul(pseudo_inv, task_space_vel) + null_space_vector
         return joint_space_vel
     
+    def get_Torque_from_End_effector_Wrench(self, force_x_y: np.ndarray((2,))):
+        return np.matmul(self.Jacobian().T, force_x_y.reshape(-1,1))
+    
 class Solver:
     def __init__(self) -> None:
         pass
@@ -159,7 +162,45 @@ class Dynamics_Optimizer:
         velocity_vector = velocity_vector/np.linalg.norm(velocity_vector)
         return velocity_vector
     
+class Dynamics_Model:
+    def __init__(self) -> None:
+        pass
+    def update_Physical_Properties(self,
+                                   armlength: np.ndarray = np.array([0.1, 0.1, 0.1]),
+                                   armlength_to_center: np.ndarray = np.array([0.052, 0.052, 0.052]),
+                                   moment_of_inertia: np.ndarray = np.array([0.00002487, 0.00002487, 0.00002487]),
+                                   mass_of_arm: np.ndarray = np.array([0.02738, 0.02738, 0.02738]),
+                                   ) -> None:
+        self.l1, self.l2, self.l3 = armlength
+        self.lc1, self.lc2, self.lc3 = armlength_to_center
+        self.Ic1, self.Ic2, self.Ic3 = moment_of_inertia
+        self.m1, self.m2, self.m3 = mass_of_arm
+        self.armlength = armlength
+        self.armlength_to_center = armlength_to_center
+        self.moment_of_inertia = moment_of_inertia
+        self.mass_of_arm = mass_of_arm
+        return
+    def update_Model_9_Kinematics(self, kinematic_vector: np.ndarray((9,)) = np.array([0, 0, 0, 0, 0, 0, 0, 0, 0])) -> None:
+        '''Update position, velocity, acceleration model'''
+        self.position_model = kinematic_vector[0:3]
+        self.velocity_model = kinematic_vector[3:6]
+        self.acceleration_model = kinematic_vector[6:9]
+    def get_Torque_from_Motor_Kinematics(self):
+        t1, t2, t3 = self.position_model
+        t1_dot, t2_dot, t3_dot = self.velocity_model
+        t1_dot_dot, t2_dot_dot, t3_dot_dot = self.acceleration_model
+        l1, l2, l3 = self.armlength
+        lc1, lc2, lc3 = self.armlength_to_center
+        Ic1, Ic2, Ic3 = self.moment_of_inertia
+        m1, m2, m3 = self.mass_of_arm
 
+        torque_1 = 2.0*t1_dot_dot*(0.5*Ic1 + 0.5*Ic2 + 0.5*Ic3 + 0.5*l1**2*m2 + 0.5*l1**2*m3 + 1.0*l1*l2*m3*np.cos(t2) + 1.0*l1*lc2*m2*np.cos(t2) + 1.0*l1*lc3*m3*np.cos(t2 + t3) + 0.5*l2**2*m3 + 1.0*l2*lc3*m3*np.cos(t3) + 0.5*lc1**2*m1 + 0.5*lc2**2*m2 + 0.5*lc3**2*m3) + 2.0*t2_dot_dot*(0.5*Ic2 + 0.5*Ic3 + 0.5*l1*l2*m3*np.cos(t2) + 0.5*l1*lc2*m2*np.cos(t2) + 0.5*l1*lc3*m3*np.cos(t2 + t3) + 0.5*l2**2*m3 + 1.0*l2*lc3*m3*np.cos(t3) + 0.5*lc2**2*m2 + 0.5*lc3**2*m3) + 1.0*t3_dot_dot*(Ic3 + l1*lc3*m3*np.cos(t2 + t3) + l2*lc3*m3*np.cos(t3) + lc3**2*m3) - 2.0*(1.0*l1*l2*m3*t1_dot*t2_dot*np.sin(t2) + 0.5*l1*l2*m3*t2_dot**2*np.sin(t2) + 1.0*l1*lc2*m2*t1_dot*t2_dot*np.sin(t2) + 0.5*l1*lc2*m2*t2_dot**2*np.sin(t2) + 1.0*l1*lc3*m3*t1_dot*t2_dot*np.sin(t2 + t3) + 1.0*l1*lc3*m3*t1_dot*t3_dot*np.sin(t2 + t3) + 0.5*l1*lc3*m3*t2_dot**2*np.sin(t2 + t3) + 1.0*l1*lc3*m3*t2_dot*t3_dot*np.sin(t2 + t3) + 0.5*l1*lc3*m3*t3_dot**2*np.sin(t2 + t3) + 1.0*l2*lc3*m3*t1_dot*t3_dot*np.sin(t3) + 1.0*l2*lc3*m3*t2_dot*t3_dot*np.sin(t3) + 0.5*l2*lc3*m3*t3_dot**2*np.sin(t3))
+
+        torque_2 = 2.0*t1_dot_dot*(0.5*Ic2 + 0.5*Ic3 + 0.5*l1*l2*m3*np.cos(t2) + 0.5*l1*lc2*m2*np.cos(t2) + 0.5*l1*lc3*m3*np.cos(t2 + t3) + 0.5*l2**2*m3 + 1.0*l2*lc3*m3*np.cos(t3) + 0.5*lc2**2*m2 + 0.5*lc3**2*m3) + 2.0*t2_dot_dot*(0.5*Ic2 + 0.5*Ic3 + 0.5*l2**2*m3 + 1.0*l2*lc3*m3*np.cos(t3) + 0.5*lc2**2*m2 + 0.5*lc3**2*m3) + 1.0*t3_dot_dot*(Ic3 + l2*lc3*m3*np.cos(t3) + lc3**2*m3) + 2.0*(0.5*l1*l2*m3*t1_dot**2*np.sin(t2) + 0.5*l1*lc2*m2*t1_dot**2*np.sin(t2) + 0.5*l1*lc3*m3*t1_dot**2*np.sin(t2 + t3) - 1.0*l2*lc3*m3*t1_dot*t3_dot*np.sin(t3) - 1.0*l2*lc3*m3*t2_dot*t3_dot*np.sin(t3) - 0.5*l2*lc3*m3*t3_dot**2*np.sin(t3))
+
+        torque_3 = 2.0*lc3*m3*(0.5*l1*t1_dot**2*np.sin(t2 + t3) + 0.5*l2*t1_dot**2*np.sin(t3) + 1.0*l2*t1_dot*t2_dot*np.sin(t3) + 0.5*l2*t2_dot**2*np.sin(t3)) + 1.0*t1_dot_dot*(Ic3 + l1*lc3*m3*np.cos(t2 + t3) + l2*lc3*m3*np.cos(t3) + lc3**2*m3) + 1.0*t2_dot_dot*(Ic3 + l2*lc3*m3*np.cos(t3) + lc3**2*m3) + 1.0*t3_dot_dot*(Ic3 + lc3**2*m3)
+
+        return torque_1, torque_2, torque_3 
 
 # class Forward_Kinematics:
 #     def __init__(self, joint_angle: np.ndarray, arm_length: np.ndarray = np.array([100, 100, 100]), angle_in_degree: bool = True) -> None:
