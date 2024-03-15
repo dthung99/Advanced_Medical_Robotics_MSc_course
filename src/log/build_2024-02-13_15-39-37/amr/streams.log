@@ -1,0 +1,33 @@
+[5.815s] Invoking command in '/home/pi/ws/src/build/amr': PYTHONPATH=/home/pi/ws/src/build/amr/prefix_override:/home/pi/ws/src/install/amr/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/pi/ws/src/build/amr/build --no-deps install_data
+[7.221s] running develop
+[7.223s] /usr/lib/python3/dist-packages/setuptools/command/easy_install.py:158: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.
+[7.224s]   warnings.warn(
+[7.229s] /usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[7.231s]   warnings.warn(
+[8.104s] running egg_info
+[8.105s] writing amr.egg-info/PKG-INFO
+[8.106s] writing dependency_links to amr.egg-info/dependency_links.txt
+[8.108s] writing entry points to amr.egg-info/entry_points.txt
+[8.110s] writing requirements to amr.egg-info/requires.txt
+[8.111s] writing top-level names to amr.egg-info/top_level.txt
+[8.130s] reading manifest file 'amr.egg-info/SOURCES.txt'
+[8.131s] writing manifest file 'amr.egg-info/SOURCES.txt'
+[8.136s] running build_ext
+[8.137s] Creating /home/pi/ws/src/install/amr/lib/python3.10/site-packages/amr.egg-link (link to .)
+[8.143s] Installing angle_control_with_jacobian_solver script to /home/pi/ws/src/install/amr/lib/amr
+[8.144s] Installing command_pathway_generation script to /home/pi/ws/src/install/amr/lib/amr
+[8.145s] Installing hardware_interface script to /home/pi/ws/src/install/amr/lib/amr
+[8.146s] Installing hardware_interface_motor_only script to /home/pi/ws/src/install/amr/lib/amr
+[8.147s] Installing micro_pid_angle_control script to /home/pi/ws/src/install/amr/lib/amr
+[8.149s] Installing micro_pid_velocity_control script to /home/pi/ws/src/install/amr/lib/amr
+[8.150s] Installing speed_control_in_null_space script to /home/pi/ws/src/install/amr/lib/amr
+[8.151s] Installing speed_control_with_jacobian script to /home/pi/ws/src/install/amr/lib/amr
+[8.152s] Installing test_node script to /home/pi/ws/src/install/amr/lib/amr
+[8.153s] Installing ui_plotting script to /home/pi/ws/src/install/amr/lib/amr
+[8.154s] Installing ui_send_target script to /home/pi/ws/src/install/amr/lib/amr
+[8.156s] Installing ui_send_target_for_one_motor script to /home/pi/ws/src/install/amr/lib/amr
+[8.158s] Installing ui_send_target_for_pathway script to /home/pi/ws/src/install/amr/lib/amr
+[8.161s] 
+[8.163s] Installed /home/pi/ws/src/build/amr
+[8.164s] running install_data
+[8.362s] Invoked command in '/home/pi/ws/src/build/amr' returned '0': PYTHONPATH=/home/pi/ws/src/build/amr/prefix_override:/home/pi/ws/src/install/amr/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/pi/ws/src/build/amr/build --no-deps install_data

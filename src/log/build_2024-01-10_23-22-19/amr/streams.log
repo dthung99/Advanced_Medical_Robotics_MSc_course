@@ -1,0 +1,25 @@
+[6.572s] Invoking command in '/home/pi/ws/src/build/amr': PYTHONPATH=/home/pi/ws/src/build/amr/prefix_override:/home/pi/ws/src/install/amr/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/pi/ws/src/build/amr/build --no-deps install_data
+[8.067s] running develop
+[8.069s] /usr/lib/python3/dist-packages/setuptools/command/easy_install.py:158: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.
+[8.069s]   warnings.warn(
+[8.075s] /usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[8.075s]   warnings.warn(
+[8.966s] running egg_info
+[8.968s] writing amr.egg-info/PKG-INFO
+[8.969s] writing dependency_links to amr.egg-info/dependency_links.txt
+[8.970s] writing entry points to amr.egg-info/entry_points.txt
+[8.973s] writing requirements to amr.egg-info/requires.txt
+[8.977s] writing top-level names to amr.egg-info/top_level.txt
+[8.980s] reading manifest file 'amr.egg-info/SOURCES.txt'
+[8.984s] writing manifest file 'amr.egg-info/SOURCES.txt'
+[8.991s] running build_ext
+[8.993s] Creating /home/pi/ws/src/install/amr/lib/python3.10/site-packages/amr.egg-link (link to .)
+[8.999s] Installing UI_plotting script to /home/pi/ws/src/install/amr/lib/amr
+[9.001s] Installing hardware_interface script to /home/pi/ws/src/install/amr/lib/amr
+[9.004s] Installing simple_publisher script to /home/pi/ws/src/install/amr/lib/amr
+[9.004s] Installing simple_publisher_step script to /home/pi/ws/src/install/amr/lib/amr
+[9.005s] Installing simple_subscriber script to /home/pi/ws/src/install/amr/lib/amr
+[9.006s] 
+[9.008s] Installed /home/pi/ws/src/build/amr
+[9.009s] running install_data
+[9.192s] Invoked command in '/home/pi/ws/src/build/amr' returned '0': PYTHONPATH=/home/pi/ws/src/build/amr/prefix_override:/home/pi/ws/src/install/amr/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/pi/ws/src/build/amr/build --no-deps install_data

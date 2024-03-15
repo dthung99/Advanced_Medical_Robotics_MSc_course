@@ -1,0 +1,27 @@
+[5.878s] Invoking command in '/home/pi/ws/src/build/amr': PYTHONPATH=/home/pi/ws/src/build/amr/prefix_override:/home/pi/ws/src/install/amr/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/pi/ws/src/build/amr/build --no-deps install_data
+[7.363s] running develop
+[7.365s] /usr/lib/python3/dist-packages/setuptools/command/easy_install.py:158: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.
+[7.366s]   warnings.warn(
+[7.371s] /usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[7.371s]   warnings.warn(
+[8.293s] running egg_info
+[8.304s] writing amr.egg-info/PKG-INFO
+[8.312s] writing dependency_links to amr.egg-info/dependency_links.txt
+[8.314s] writing entry points to amr.egg-info/entry_points.txt
+[8.315s] writing requirements to amr.egg-info/requires.txt
+[8.317s] writing top-level names to amr.egg-info/top_level.txt
+[8.321s] reading manifest file 'amr.egg-info/SOURCES.txt'
+[8.324s] writing manifest file 'amr.egg-info/SOURCES.txt'
+[8.329s] running build_ext
+[8.331s] Creating /home/pi/ws/src/install/amr/lib/python3.10/site-packages/amr.egg-link (link to .)
+[8.334s] Installing UI_plotting script to /home/pi/ws/src/install/amr/lib/amr
+[8.336s] Installing UI_plotting_2 script to /home/pi/ws/src/install/amr/lib/amr
+[8.337s] Installing control_pathway_generation script to /home/pi/ws/src/install/amr/lib/amr
+[8.348s] Installing hardware_interface script to /home/pi/ws/src/install/amr/lib/amr
+[8.351s] Installing ik_controller script to /home/pi/ws/src/install/amr/lib/amr
+[8.353s] Installing ik_controller_null_space script to /home/pi/ws/src/install/amr/lib/amr
+[8.355s] Installing simple_publisher script to /home/pi/ws/src/install/amr/lib/amr
+[8.359s] 
+[8.361s] Installed /home/pi/ws/src/build/amr
+[8.363s] running install_data
+[8.865s] Invoked command in '/home/pi/ws/src/build/amr' returned '0': PYTHONPATH=/home/pi/ws/src/build/amr/prefix_override:/home/pi/ws/src/install/amr/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py develop --editable --build-directory /home/pi/ws/src/build/amr/build --no-deps install_data
