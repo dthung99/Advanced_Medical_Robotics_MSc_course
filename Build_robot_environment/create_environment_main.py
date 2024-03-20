@@ -53,29 +53,60 @@ class BuildEnvironment:
                     self.env[i, j, 0] = self.environment_obstacle_code["Add Damping Area"]
                     self.env[i, j, 3] = damping_factor
 
-    def addRigidWall(self, pointlist: np.ndarray, wall_depth = 10):
-        print(pointlist)
+    def addRigidWall(self, pointlist: np.ndarray, wall_depth = 10, damping_factor = -15):
         # y = ax + b
         point_1 = pointlist[0]
         point_2 = pointlist[1]
+        point_3 = pointlist[2]
         direction_unit_vector = point_2 - point_1
-        direction_unit_vector = direction_unit_vector/np.linalg.norm(direction_unit_vector)
-        
+        segment_length = np.linalg.norm(direction_unit_vector)
+        direction_unit_vector = direction_unit_vector/segment_length
 
+        orthogonal_unit_vector = np.r_[-direction_unit_vector[1], direction_unit_vector[0]]
+        orthogonal_unit_vector = np.sign(np.dot(orthogonal_unit_vector, point_3 - point_2)) * orthogonal_unit_vector
 
-        coef_a = (point_2[1] - point_1[1])/(point_2[0] - point_1[0])
-        coef_b = point_2[1] - point_2[0]*coef_a
-        print(coef_a)
-        print(coef_b)
-        print(coef_a*point_1[0] + coef_b)
-        print(coef_a*point_2[0] + coef_b)
-        lower_x_segment = math.floor(min(point_1[0], point_2[0]))
-        upper_x_segment = math.ceil(max(point_1[0], point_2[0]))
-        for i in range(lower_x_segment, upper_x_segment+1):
-            current_y = coef_a*i + coef_b
-            self.env[i, math.floor(current_y), 0] = self.environment_obstacle_code["Add Rigid Wall"]
-            self.env[i, math.ceil(current_y), 0] = self.environment_obstacle_code["Add Rigid Wall"]
-            print("Doing")
+        current_point = point_1
+        while np.linalg.norm(current_point - point_1) < segment_length:
+            x_current = current_point[0]
+            y_current = current_point[1]
+            self.env[math.floor(x_current), math.floor(y_current), 0] = self.environment_obstacle_code["Add Rigid Wall"]
+            self.env[math.ceil(x_current), math.ceil(y_current), 0] = self.environment_obstacle_code["Add Rigid Wall"]
+            self.env[math.floor(x_current), math.ceil(y_current), 0] = self.environment_obstacle_code["Add Rigid Wall"]
+            self.env[math.ceil(x_current), math.floor(y_current), 0] = self.environment_obstacle_code["Add Rigid Wall"]
+            current_orthogonal_swipe_point = current_point
+            while np.linalg.norm(current_orthogonal_swipe_point - current_point) < wall_depth:
+                x_current = current_orthogonal_swipe_point[0]
+                y_current = current_orthogonal_swipe_point[1]
+                self.env[math.floor(x_current), math.floor(y_current), 0] = self.environment_obstacle_code["Add Rigid Wall"]
+                self.env[math.ceil(x_current), math.ceil(y_current), 0] = self.environment_obstacle_code["Add Rigid Wall"]
+                self.env[math.floor(x_current), math.ceil(y_current), 0] = self.environment_obstacle_code["Add Rigid Wall"]
+                self.env[math.ceil(x_current), math.floor(y_current), 0] = self.environment_obstacle_code["Add Rigid Wall"]
+                self.env[math.floor(x_current), math.floor(y_current), 1:3] = orthogonal_unit_vector*2
+                self.env[math.ceil(x_current), math.ceil(y_current), 1:3] = orthogonal_unit_vector*2
+                self.env[math.floor(x_current), math.ceil(y_current), 1:3] = orthogonal_unit_vector*2
+                self.env[math.ceil(x_current), math.floor(y_current), 1:3] = orthogonal_unit_vector*2
+
+                self.env[math.floor(x_current), math.floor(y_current), 3] = damping_factor
+                self.env[math.ceil(x_current), math.ceil(y_current), 3] = damping_factor
+                self.env[math.floor(x_current), math.ceil(y_current), 3] = damping_factor
+                self.env[math.ceil(x_current), math.floor(y_current), 3] = damping_factor
+                
+                current_orthogonal_swipe_point = current_orthogonal_swipe_point + orthogonal_unit_vector
+            current_point = current_point + direction_unit_vector
+
+        # coef_a = (point_2[1] - point_1[1])/(point_2[0] - point_1[0])
+        # coef_b = point_2[1] - point_2[0]*coef_a
+        # print(coef_a)
+        # print(coef_b)
+        # print(coef_a*point_1[0] + coef_b)
+        # print(coef_a*point_2[0] + coef_b)
+        # lower_x_segment = math.floor(min(point_1[0], point_2[0]))
+        # upper_x_segment = math.ceil(max(point_1[0], point_2[0]))
+        # for i in range(lower_x_segment, upper_x_segment+1):
+        #     current_y = coef_a*i + coef_b
+        #     self.env[i, math.floor(current_y), 0] = self.environment_obstacle_code["Add Rigid Wall"]
+        #     self.env[i, math.ceil(current_y), 0] = self.environment_obstacle_code["Add Rigid Wall"]
+        #     print("Doing")
 
         
         # center = np.array(center)
@@ -191,7 +222,7 @@ class BuildEnvironment:
         self.slide_ax_2 = plt.axes([0.30, 0.10, 0.15, 0.03])  # [left, bottom, width, height]
         # self.slide_ax_3 = plt.axes([0.10, 0.15, 0.15, 0.03])  # [left, bottom, width, height]
 
-        self.slider_1 = Slider(self.slide_ax_1, 'Damping coefficient ', -40, 40, valinit=-30)
+        self.slider_1 = Slider(self.slide_ax_1, 'Damping coefficient ', -30, 30, valinit=-20)
         self.slider_2 = Slider(self.slide_ax_2, 'Radius ', 0, 100, valinit=10)
         # self.slider_3 = Slider(self.slide_ax_3, 'Radius', 0, 100, valinit=10)
         # Store widget
@@ -240,8 +271,8 @@ class BuildEnvironment:
             # Store the point for further processing
             self.UIaddRigidWallClickPointStorage = np.append(self.UIaddRigidWallClickPointStorage, position, axis=0)
             self.UIaddRigidWallClickPointPlot.set_data(self.UIaddRigidWallClickPointStorage.T[1], self.UIaddRigidWallClickPointStorage.T[0])
-            if len(self.UIaddRigidWallClickPointStorage)==2:
-                self.addRigidWall(pointlist=self.UIaddRigidWallClickPointStorage, wall_depth=10)
+            if len(self.UIaddRigidWallClickPointStorage)==3:
+                self.addRigidWall(pointlist=self.UIaddRigidWallClickPointStorage, wall_depth=self.slider_1.val)
                 self.UIaddRigidWallClickPointStorage = np.empty((0,2))
             self.updateFigure()
     def UIaddRigidWallClear(self):
@@ -363,6 +394,7 @@ class MyButton:
             if self.button_mode_dict[text]:
                 self.turn_off_button(text)
                 self.remove_dependent_widgets_axes(text)
+                self.remove_dependent_widgets_objects(text)
                 self.buttons_clear_function_dict[text]()
     
     def add_dependent_widgets_axes(self, text, *widget_axes):
@@ -378,6 +410,10 @@ class MyButton:
     def remove_dependent_widgets_axes(self, text):
         for ax in self.buttons_widgets_axes[text]:
             ax.remove()
+
+    def remove_dependent_widgets_objects(self, text):
+        for object in self.buttons_widgets_objects[text]:
+            object.active = False
 
 
 
