@@ -17,12 +17,14 @@ class BuildEnvironment:
         self.environment_obstacle_code = {"Circle Spring": 1,
                                           "Add Damping Area": 2,
                                           "Add Rigid Wall": 3,
-                                          "Add Facilitate Area": 4
+                                          "Add Facilitate Area": 4,
+                                          "Add Rough Wall": 3,
                                           }
         self.environment_store_medthod = {"Circle Spring": ("Pure float force in vector index 1 and 2]"),
                                           "Add Damping Area": ("Gain of velocity in vector index 3"),
                                           "Add Rigid Wall": ("Combined of spring and damping -> store in 1 2 3"),
-                                          "Add Facilitate Area": ("A vector and a co-effeciency -> store in [4 5] and 6")
+                                          "Add Facilitate Area": ("A vector and a co-effeciency -> store in [4 5] and 6"),
+                                          "Add Rough Wall": ("Rough wall at the surface, combined of spring and damping -> store in 1 2 3"),
                                           }
 ###########################################
     def addCircleSpring(self, center: np.ndarray((2,)), k_matrix: np.ndarray((2,2)) = np.array([[1, 0],[0,1]]), radius = 10):
@@ -194,6 +196,76 @@ class BuildEnvironment:
         #             self.env[i, j, 0] = self.environment_obstacle_code["Add Damping Area"]
         #             self.env[i, j, 3] = damping_factor
 
+    def addRoughWall(self, pointlist: np.ndarray, wall_depth = 10, wall_strength = 2, roughness = 0.2, damping_factor = -15):
+        # y = ax + b
+        point_1 = pointlist[0]
+        point_2 = pointlist[1]
+        point_3 = pointlist[2]
+        direction_unit_vector = point_2 - point_1
+        segment_length = np.linalg.norm(direction_unit_vector)
+        direction_unit_vector = direction_unit_vector/segment_length
+
+        orthogonal_unit_vector = np.r_[-direction_unit_vector[1], direction_unit_vector[0]]
+        orthogonal_unit_vector = np.sign(np.dot(orthogonal_unit_vector, point_3 - point_2)) * orthogonal_unit_vector
+
+        current_point = point_1
+        while np.linalg.norm(current_point - point_1) < segment_length:
+            x_current = current_point[0]
+            y_current = current_point[1]
+            self.env[math.floor(x_current), math.floor(y_current), 0] = self.environment_obstacle_code["Add Rigid Wall"]
+            self.env[math.ceil(x_current), math.ceil(y_current), 0] = self.environment_obstacle_code["Add Rigid Wall"]
+            self.env[math.floor(x_current), math.ceil(y_current), 0] = self.environment_obstacle_code["Add Rigid Wall"]
+            self.env[math.ceil(x_current), math.floor(y_current), 0] = self.environment_obstacle_code["Add Rigid Wall"]
+            current_orthogonal_swipe_point = current_point
+            random_roughness = np.random.rand()*roughness*wall_depth
+            while np.linalg.norm(current_orthogonal_swipe_point - current_point) < wall_depth + random_roughness:
+                x_current = current_orthogonal_swipe_point[0]
+                y_current = current_orthogonal_swipe_point[1]
+                self.env[math.floor(x_current), math.floor(y_current), 0] = self.environment_obstacle_code["Add Rigid Wall"]
+                self.env[math.ceil(x_current), math.ceil(y_current), 0] = self.environment_obstacle_code["Add Rigid Wall"]
+                self.env[math.floor(x_current), math.ceil(y_current), 0] = self.environment_obstacle_code["Add Rigid Wall"]
+                self.env[math.ceil(x_current), math.floor(y_current), 0] = self.environment_obstacle_code["Add Rigid Wall"]
+                self.env[math.floor(x_current), math.floor(y_current), 1:3] = orthogonal_unit_vector*wall_strength
+                self.env[math.ceil(x_current), math.ceil(y_current), 1:3] = orthogonal_unit_vector*wall_strength
+                self.env[math.floor(x_current), math.ceil(y_current), 1:3] = orthogonal_unit_vector*wall_strength
+                self.env[math.ceil(x_current), math.floor(y_current), 1:3] = orthogonal_unit_vector*wall_strength
+
+                self.env[math.floor(x_current), math.floor(y_current), 3] = damping_factor
+                self.env[math.ceil(x_current), math.ceil(y_current), 3] = damping_factor
+                self.env[math.floor(x_current), math.ceil(y_current), 3] = damping_factor
+                self.env[math.ceil(x_current), math.floor(y_current), 3] = damping_factor
+                
+                current_orthogonal_swipe_point = current_orthogonal_swipe_point + orthogonal_unit_vector
+            current_point = current_point + direction_unit_vector
+
+        # coef_a = (point_2[1] - point_1[1])/(point_2[0] - point_1[0])
+        # coef_b = point_2[1] - point_2[0]*coef_a
+        # print(coef_a)
+        # print(coef_b)
+        # print(coef_a*point_1[0] + coef_b)
+        # print(coef_a*point_2[0] + coef_b)
+        # lower_x_segment = math.floor(min(point_1[0], point_2[0]))
+        # upper_x_segment = math.ceil(max(point_1[0], point_2[0]))
+        # for i in range(lower_x_segment, upper_x_segment+1):
+        #     current_y = coef_a*i + coef_b
+        #     self.env[i, math.floor(current_y), 0] = self.environment_obstacle_code["Add Rigid Wall"]
+        #     self.env[i, math.ceil(current_y), 0] = self.environment_obstacle_code["Add Rigid Wall"]
+        #     print("Doing")
+
+        
+        # center = np.array(center)
+        # lower_limit_x = max(0, round(center[0]-radius))
+        # upper_limit_x = min(self.x_upper_limit, round(center[0]+radius))
+        # lower_limit_y = max(0, round(center[1]-radius))
+        # upper_limit_y = min(self.y_upper_limit, round(center[1]+radius))
+        # for i in range(lower_limit_x, upper_limit_x + 1):
+        #     for j in range(lower_limit_y, upper_limit_y + 1):
+        #         current_point = np.array([i, j])
+        #         if np.linalg.norm(current_point-center) < radius:
+        #             self.env[i, j, 0] = self.environment_obstacle_code["Add Damping Area"]
+        #             self.env[i, j, 3] = damping_factor
+
+
 ###########################################
     def draw_on_image(self):
         # Create fig, axe
@@ -216,8 +288,10 @@ class BuildEnvironment:
         self.button_manager.create_button(axes=[0.05, 0.75, 0.2, 0.04], text="Add Damping Area", connection=self.UIaddDampingArea, clearfunction = self.UIaddDampingAreaClear)
         # Add rigid wall
         self.button_manager.create_button(axes=[0.05, 0.70, 0.2, 0.04], text="Add Rigid Wall", connection=self.UIaddRigidWall, clearfunction = self.UIaddRigidWallClear)
-        # Add Facilitate Area
+        # Add facilitate Area
         self.button_manager.create_button(axes=[0.05, 0.65, 0.2, 0.04], text="Add Facilitate Area", connection=self.UIaddFacilitateArea, clearfunction = self.UIaddFacilitateAreaClear)
+        # Add rough wall
+        self.button_manager.create_button(axes=[0.05, 0.60, 0.2, 0.04], text="Add Rough Wall", connection=self.UIaddRoughWall, clearfunction = self.UIaddRoughWallClear)
 
         # Add export button
         self.button_manager.create_button(axes=[0.05, 0.90, 0.2, 0.04], text="Export", connection=self.ExportEnvironment)
@@ -395,6 +469,46 @@ class BuildEnvironment:
         self.UIaddFacilitateAreaClickPointPlot.remove()
         pass
 
+###########################################
+    def UIaddRoughWall(self, event):
+        self.clear_all_UI_subWidgets()
+        # Congigurate the button
+        self.button_manager.turn_on_button(text="Add Rough Wall")
+        # Add widgets
+        self.slide_ax_1 = plt.axes([0.30, 0.05, 0.15, 0.03])  # [left, bottom, width, height]
+        self.slide_ax_2 = plt.axes([0.30, 0.10, 0.15, 0.03])  # [left, bottom, width, height]
+        self.slide_ax_3 = plt.axes([0.30, 0.15, 0.15, 0.03])  # [left, bottom, width, height]
+
+        self.slider_1 = Slider(self.slide_ax_1, 'Wall Depth', 10, 50, valinit=20)
+        self.slider_2 = Slider(self.slide_ax_2, 'Wall Strength ', 0, 2, valinit=2)
+        self.slider_3 = Slider(self.slide_ax_3, 'Roughness', 0, 0.5, valinit=0.3)
+        self.UIaddRoughWallClickPointStorage = np.empty((0,2))
+        self.UIaddRoughWallClickPointPlot, = self.ax.plot([], [], 'ko', markersize = 1)
+        # self.slider_3 = Slider(self.slide_ax_3, 'Radius', 0, 100, valinit=10)
+        # Store widget
+        self.button_manager.add_dependent_widgets_axes("Add Rough Wall", self.slide_ax_1, self.slide_ax_2, self.slide_ax_3)
+        self.button_manager.add_dependent_widgets_objects("Add Rough Wall", self.slider_1, self.slider_2, self.slider_3)
+
+        # Connect to action
+        self.UIaddRoughWallButtonConnection = self.fig.canvas.mpl_connect('button_press_event', self.on_mouse_press_UIaddRoughWall)
+    def on_mouse_press_UIaddRoughWall(self, event):
+        if event.inaxes == self.ax:
+            position = np.array([[int(event.ydata), int(event.xdata)]])
+            # position_list_type = [int(event.ydata), int(event.xdata)]
+            # self.addDampingArea(center=position_list_type, damping_factor = self.slider_1.val, radius = self.slider_2.val)
+            # Store the point for further processing
+            self.UIaddRoughWallClickPointStorage = np.append(self.UIaddRoughWallClickPointStorage, position, axis=0)
+            self.UIaddRoughWallClickPointPlot.set_data(self.UIaddRoughWallClickPointStorage.T[1], self.UIaddRoughWallClickPointStorage.T[0])
+            if len(self.UIaddRoughWallClickPointStorage)==3:
+                self.addRoughWall(pointlist=self.UIaddRoughWallClickPointStorage, wall_depth=self.slider_1.val, wall_strength=self.slider_2.val, roughness = self.slider_3.val)
+                self.UIaddRoughWallClickPointStorage = np.empty((0,2))
+            self.updateFigure()
+    def UIaddRoughWallClear(self):
+        # Anything that is still not clean
+        self.fig.canvas.mpl_disconnect(self.UIaddRoughWallButtonConnection)
+        self.UIaddRoughWallClickPointPlot.remove()
+        pass
+
 ############### SOME STORE CODE
 
 ############### SOME STORE CODE
@@ -456,6 +570,10 @@ class BuildEnvironment:
         support_variable = np.copy(export_array[:,:,1])
         export_array[:,:,1] = np.copy(export_array[:,:,2])
         export_array[:,:,2] = -support_variable
+        # Transform to robot space
+        support_variable = np.copy(export_array[:,:,4])
+        export_array[:,:,4] = np.copy(export_array[:,:,5])
+        export_array[:,:,5] = -support_variable
         # Save file
         export_array = export_array.tolist()
         with open('Environment.pk1', 'wb') as file:

@@ -96,26 +96,46 @@ class Force_Control(Node):
             # Counter dynamic 
             force_calculated = force_calculated - self.dynamic_model.get_Torque_from_Motor_Kinematics()/self.motor_scale*1000*self.dynamic_weird_scale
         # Damping model in general
+        elif environmentvector[0] == 4:
+            end_effector_velocity_norm = np.linalg.norm(end_effector_velocity)
+            if end_effector_velocity_norm == 0:
+                direction = 0
+            else:
+                direction = np.dot(environmentvector[4:6],end_effector_velocity)/end_effector_velocity_norm
+
+            if (direction < 0) or (environmentvector[3] != 0):
+                # Get pure force
+                brute_force = (environmentvector[1:3] + end_effector_velocity*(environmentvector[3]+direction)/self.motor_scale)/self.stable_factor
+                # Get environment force
+                force_calculated = force_calculated + self.robot_state.get_Torque_from_End_effector_Wrench(brute_force/self.motor_scale).reshape(-1,)
+            else:
+                # Get pure force
+                brute_force = (environmentvector[1:3] + end_effector_velocity*(environmentvector[3]+direction)/self.motor_scale)/self.stable_factor
+                # Get environment force
+                force_calculated = force_calculated + self.robot_state.get_Torque_from_End_effector_Wrench(brute_force/self.motor_scale).reshape(-1,)
+                # Get damping factor
+                # Compensate for friction
+                force_calculated = force_calculated + joint_velocity*self.friction_coef[0] + np.sign(joint_velocity)*self.friction_coef[1]
+
         elif environmentvector[3] != 0:
             # Get pure force
-            brute_force = (environmentvector[1:3] + end_effector_velocity*environmentvector[3]/self.motor_scale)/self.stable_factor
+            brute_force = (environmentvector[1:3] + end_effector_velocity*(environmentvector[3])/self.motor_scale)/self.stable_factor
             # Get environment force
             force_calculated = force_calculated + self.robot_state.get_Torque_from_End_effector_Wrench(brute_force/self.motor_scale).reshape(-1,)
         else:
             # Get pure force
-            brute_force = (environmentvector[1:3] + end_effector_velocity*environmentvector[3]/self.motor_scale)/self.stable_factor
+            brute_force = (environmentvector[1:3] + end_effector_velocity*(environmentvector[3])/self.motor_scale)/self.stable_factor
             # Get environment force
             force_calculated = force_calculated + self.robot_state.get_Torque_from_End_effector_Wrench(brute_force/self.motor_scale).reshape(-1,)
             # Get damping factor
             # Compensate for friction
             force_calculated = force_calculated + joint_velocity*self.friction_coef[0] + np.sign(joint_velocity)*self.friction_coef[1]
+            # print(np.dot(environmentvector[4:6],end_effector_velocity)/np.linalg.norm(end_effector_velocity))
             # Compensate for dynamic model
             # force_calculated = force_calculated + 
             # force_calculated = force_calculated + self.dynamic_model.get_Torque_from_Motor_Kinematics()/self.motor_scale*1000*self.dynamic_weird_scale
             # No B matrix
             # force_calculated = force_calculated + self.dynamic_model.get_Torque_from_Motor_Kinematics_No_inertia_Matrix()/self.motor_scale*1000*self.dynamic_weird_scale
-        
-
         # print(self.dynamic_model.get_Torque_from_Motor_Kinematics()/self.motor_scale*1000*self.dynamic_weird_scale)
 
         # print(force_calculated)
