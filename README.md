@@ -24,7 +24,7 @@ $$ \tau = J^T \cdot F $$
 
 I got 8.3/10 for my report.
 
-# Note
+# Note:
 
 This section indicates some of the path and the purpose of the codes provided there. Because the codes are designed as a distributed system, most of the codes cannot be run alone.
 
