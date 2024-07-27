@@ -14,7 +14,9 @@ I solve this problem by building two systems:
 
 - Using the parameters of the environment at point MxN, the robot simulate the force at that point by controlling the motor torque through the following formula:
 
-$\tau = J^T \cdot F$
+
+$$ \tau = J^T \cdot F $$
+
 
 - Additionally, I did identify the dynamic and friction models of the robot to aid the system.
 
@@ -26,9 +28,9 @@ I got 8.3/10 for my report.
 
 This section indicates some of the path and the purpose of the codes provided there. Because the codes are designed as a distributed system, most of the codes cannot be run alone.
 
-- [generate_robot_environment\create_environment_main_new.py](generate_robot_environment\create_environment_main_new.py): This script is runable by itself. It is used for generating a tensor that store the environment parameters as mentioned.
+- [generate_robot_environment/create_environment_main_new.py](generate_robot_environment/create_environment_main_new.py): This script is runable by itself. It is used for generating a tensor that store the environment parameters as mentioned.
 
-- [ROS2_package\haptic\haptic](ROS2_package\haptic\haptic): This is where the main codes for controlling the robot reside.
+- [ROS2_package/haptic/haptic](ROS2_package/haptic/haptic): This is where the main codes for controlling the robot reside.
 
     + hardware_interface.py is for communicating with the microcontroller, and needed to be modified for different setup.
 
@@ -38,5 +40,5 @@ This section indicates some of the path and the purpose of the codes provided th
 
     + module_my_math.py is my implementation of the importance Maths used in the project.
 
-- [ROS2_package\other_things\other_things](ROS2_package\other_things\other_things): This is where the codes used for a Jacobian-based task space controller reside. It is an auxiliary objective of the project. Luckily, the [ROS2_package\other_things\launch\jacobian_controller_launch.py](ROS2_package\other_things\launch\jacobian_controller_launch.py) helps launch the neccesary nodes.
+- [ROS2_package/other_things/other_things](ROS2_package/other_things/other_things): This is where the codes used for a Jacobian-based task space controller reside. It is an auxiliary objective of the project. Luckily, the [ROS2_package/other_things/launch/jacobian_controller_launch.py](ROS2_package/other_things/launch/jacobian_controller_launch.py) helps launch the neccesary nodes.
 
