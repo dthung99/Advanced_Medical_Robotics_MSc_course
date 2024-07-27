@@ -13,13 +13,8 @@ class Force_Control(Node):
         super().__init__('force_control')
         # Declare parameter
         self.motor_scale = 1.487
-        # self.friction_coef = np.array([[0.7336, 1.3592, 0.6990],
-        #                               [23.0210, 13.7851, 23.4776]])
-        # self.friction_coef = np.array([[1.8632, 1.2933, 1.1437],
-        #                                [10.8496, 11.3728, 15.6475]])
         self.friction_coef = np.array([[2.7385, 11.2785, 1.0031],
                                        [14.9386, 33.9792, 13.5751]])
-        # self.friction_coef = np.array([1.0666, 10.2892])
         self.dynamic_weird_scale = 1 #200
         self.stable_factor = 1
         self.environment_name = "/home/pi/ros2_ws/src/haptic/haptic/Environment.pk1"
@@ -39,10 +34,6 @@ class Force_Control(Node):
         self.previous_joint_velocity = np.array([0, 0, 0])
         # # Dynamic model
         self.dynamic_model = Dynamics_Model()
-        # self.dynamic_model.update_Physical_Properties(armlength = np.array([0.1, 0.1, 0.1]),
-        #                                               armlength_to_center = np.array([0.071, 0.071, 0.052]),
-        #                                               moment_of_inertia = np.array([0.0000535, 0.0000535, 0.00002487]),
-        #                                               mass_of_arm = np.array([0.0454, 0.0454, 0.02738]))
         self.dynamic_model.update_Physical_Properties(armlength = np.array([0.1, 0.1, 0.1]),
                                                       armlength_to_center = np.array([0.071, 0.071, 0.052]),
                                                       moment_of_inertia = np.array([0.0000535, 0.0000535, 0.00002487]),
@@ -130,20 +121,6 @@ class Force_Control(Node):
             # Get damping factor
             # Compensate for friction
             force_calculated = force_calculated + joint_velocity*self.friction_coef[0] + np.sign(joint_velocity)*self.friction_coef[1]
-            # print(np.dot(environmentvector[4:6],end_effector_velocity)/np.linalg.norm(end_effector_velocity))
-            # Compensate for dynamic model
-            # force_calculated = force_calculated + 
-            # force_calculated = force_calculated + self.dynamic_model.get_Torque_from_Motor_Kinematics()/self.motor_scale*1000*self.dynamic_weird_scale
-            # No B matrix
-            # force_calculated = force_calculated + self.dynamic_model.get_Torque_from_Motor_Kinematics_No_inertia_Matrix()/self.motor_scale*1000*self.dynamic_weird_scale
-        # print(self.dynamic_model.get_Torque_from_Motor_Kinematics()/self.motor_scale*1000*self.dynamic_weird_scale)
-
-        # print(force_calculated)
-
-        # Print something
-        # print(len(self.environment_name[x_position][y_position])  
-        # print(300 - y_position)
-        # print(brute_force)  #Frame convertion (150-y, x)
 
         # Send force
         force_calculated = -force_calculated

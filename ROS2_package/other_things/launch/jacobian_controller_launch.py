@@ -7,6 +7,7 @@ def generate_launch_description():
             package='haptic',
             executable='hardware_interface',
             name='hardware_interface_ros'),
+        # THIS NODE IS NEEDED, BUT IT NEEDS TO BE RUN IN ANOTHER TERMINAL!!!
         # launch_ros.actions.Node(
         #     package='other_things',
         #     executable='ui_send_target_for_pathway',

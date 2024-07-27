@@ -98,33 +98,6 @@ class BuildEnvironment:
                 current_orthogonal_swipe_point = current_orthogonal_swipe_point + orthogonal_unit_vector
             current_point = current_point + direction_unit_vector
 
-        # coef_a = (point_2[1] - point_1[1])/(point_2[0] - point_1[0])
-        # coef_b = point_2[1] - point_2[0]*coef_a
-        # print(coef_a)
-        # print(coef_b)
-        # print(coef_a*point_1[0] + coef_b)
-        # print(coef_a*point_2[0] + coef_b)
-        # lower_x_segment = math.floor(min(point_1[0], point_2[0]))
-        # upper_x_segment = math.ceil(max(point_1[0], point_2[0]))
-        # for i in range(lower_x_segment, upper_x_segment+1):
-        #     current_y = coef_a*i + coef_b
-        #     self.env[i, math.floor(current_y), 0] = self.environment_obstacle_code["Add Rigid Wall"]
-        #     self.env[i, math.ceil(current_y), 0] = self.environment_obstacle_code["Add Rigid Wall"]
-        #     print("Doing")
-
-        
-        # center = np.array(center)
-        # lower_limit_x = max(0, round(center[0]-radius))
-        # upper_limit_x = min(self.x_upper_limit, round(center[0]+radius))
-        # lower_limit_y = max(0, round(center[1]-radius))
-        # upper_limit_y = min(self.y_upper_limit, round(center[1]+radius))
-        # for i in range(lower_limit_x, upper_limit_x + 1):
-        #     for j in range(lower_limit_y, upper_limit_y + 1):
-        #         current_point = np.array([i, j])
-        #         if np.linalg.norm(current_point-center) < radius:
-        #             self.env[i, j, 0] = self.environment_obstacle_code["Add Damping Area"]
-        #             self.env[i, j, 3] = damping_factor
-
     def addFacilitateArea(self, pointlist: np.ndarray, facilitate_coefficient = 15):
         # y = ax + b
         point_1 = pointlist[0]
@@ -160,41 +133,9 @@ class BuildEnvironment:
                 self.env[math.ceil(x_current), math.ceil(y_current), 4:6] = orthogonal_unit_vector*facilitate_coefficient
                 self.env[math.floor(x_current), math.ceil(y_current), 4:6] = orthogonal_unit_vector*facilitate_coefficient
                 self.env[math.ceil(x_current), math.floor(y_current), 4:6] = orthogonal_unit_vector*facilitate_coefficient
-
-                # self.env[math.floor(x_current), math.floor(y_current), 3] = damping_factor
-                # self.env[math.ceil(x_current), math.ceil(y_current), 3] = damping_factor
-                # self.env[math.floor(x_current), math.ceil(y_current), 3] = damping_factor
-                # self.env[math.ceil(x_current), math.floor(y_current), 3] = damping_factor
                 
                 current_orthogonal_swipe_point = current_orthogonal_swipe_point + orthogonal_unit_vector
             current_point = current_point + direction_unit_vector
-
-        # coef_a = (point_2[1] - point_1[1])/(point_2[0] - point_1[0])
-        # coef_b = point_2[1] - point_2[0]*coef_a
-        # print(coef_a)
-        # print(coef_b)
-        # print(coef_a*point_1[0] + coef_b)
-        # print(coef_a*point_2[0] + coef_b)
-        # lower_x_segment = math.floor(min(point_1[0], point_2[0]))
-        # upper_x_segment = math.ceil(max(point_1[0], point_2[0]))
-        # for i in range(lower_x_segment, upper_x_segment+1):
-        #     current_y = coef_a*i + coef_b
-        #     self.env[i, math.floor(current_y), 0] = self.environment_obstacle_code["Add Rigid Wall"]
-        #     self.env[i, math.ceil(current_y), 0] = self.environment_obstacle_code["Add Rigid Wall"]
-        #     print("Doing")
-
-        
-        # center = np.array(center)
-        # lower_limit_x = max(0, round(center[0]-radius))
-        # upper_limit_x = min(self.x_upper_limit, round(center[0]+radius))
-        # lower_limit_y = max(0, round(center[1]-radius))
-        # upper_limit_y = min(self.y_upper_limit, round(center[1]+radius))
-        # for i in range(lower_limit_x, upper_limit_x + 1):
-        #     for j in range(lower_limit_y, upper_limit_y + 1):
-        #         current_point = np.array([i, j])
-        #         if np.linalg.norm(current_point-center) < radius:
-        #             self.env[i, j, 0] = self.environment_obstacle_code["Add Damping Area"]
-        #             self.env[i, j, 3] = damping_factor
 
     def addRoughWall(self, pointlist: np.ndarray, wall_depth = 10, wall_strength = 2, roughness = 0.2, damping_factor = -15):
         # y = ax + b
@@ -237,34 +178,6 @@ class BuildEnvironment:
                 
                 current_orthogonal_swipe_point = current_orthogonal_swipe_point + orthogonal_unit_vector
             current_point = current_point + direction_unit_vector
-
-        # coef_a = (point_2[1] - point_1[1])/(point_2[0] - point_1[0])
-        # coef_b = point_2[1] - point_2[0]*coef_a
-        # print(coef_a)
-        # print(coef_b)
-        # print(coef_a*point_1[0] + coef_b)
-        # print(coef_a*point_2[0] + coef_b)
-        # lower_x_segment = math.floor(min(point_1[0], point_2[0]))
-        # upper_x_segment = math.ceil(max(point_1[0], point_2[0]))
-        # for i in range(lower_x_segment, upper_x_segment+1):
-        #     current_y = coef_a*i + coef_b
-        #     self.env[i, math.floor(current_y), 0] = self.environment_obstacle_code["Add Rigid Wall"]
-        #     self.env[i, math.ceil(current_y), 0] = self.environment_obstacle_code["Add Rigid Wall"]
-        #     print("Doing")
-
-        
-        # center = np.array(center)
-        # lower_limit_x = max(0, round(center[0]-radius))
-        # upper_limit_x = min(self.x_upper_limit, round(center[0]+radius))
-        # lower_limit_y = max(0, round(center[1]-radius))
-        # upper_limit_y = min(self.y_upper_limit, round(center[1]+radius))
-        # for i in range(lower_limit_x, upper_limit_x + 1):
-        #     for j in range(lower_limit_y, upper_limit_y + 1):
-        #         current_point = np.array([i, j])
-        #         if np.linalg.norm(current_point-center) < radius:
-        #             self.env[i, j, 0] = self.environment_obstacle_code["Add Damping Area"]
-        #             self.env[i, j, 3] = damping_factor
-
 
 ###########################################
     def draw_on_image(self):
@@ -509,47 +422,6 @@ class BuildEnvironment:
         self.UIaddRoughWallClickPointPlot.remove()
         pass
 
-############### SOME STORE CODE
-
-############### SOME STORE CODE
-    # def UIaddDampingArea(self, event):
-    #     self.clear_all_UI_subWidgets()
-    #     # Congigurate the button
-    #     self.button_manager.turn_on_button(text="Add Damping Area")
-    #     # Add widgets
-    #     self.slide_ax_1 = plt.axes([0.30, 0.05, 0.15, 0.03])  # [left, bottom, width, height]
-    #     self.slide_ax_2 = plt.axes([0.30, 0.10, 0.15, 0.03])  # [left, bottom, width, height]
-    #     # self.slide_ax_3 = plt.axes([0.10, 0.15, 0.15, 0.03])  # [left, bottom, width, height]
-
-    #     self.slider_1 = Slider(self.slide_ax_1, 'Damping coefficient ', -15, 15, valinit=-1)
-    #     self.slider_2 = Slider(self.slide_ax_2, 'Radius ', 0, 100, valinit=10)
-    #     self.UIaddDampingAreaClickPointStorage = np.empty((0,2))
-    #     self.UIaddDampingAreaClickPointPlot, = self.ax.plot([], [], 'ko', markersize = 1)
-    #     # self.slider_3 = Slider(self.slide_ax_3, 'Radius', 0, 100, valinit=10)
-    #     # Store widget
-    #     self.button_manager.add_dependent_widgets_axes("Add Damping Area", self.slide_ax_1, self.slide_ax_2)
-    #     self.button_manager.add_dependent_widgets_objects("Add Damping Area", self.slider_1, self.slider_2)
-
-    #     # Connect to action
-    #     self.UIaddDampingAreaButtonConnection = self.fig.canvas.mpl_connect('button_press_event', self.on_mouse_press_UIaddDampingArea)
-    # def on_mouse_press_UIaddDampingArea(self, event):
-    #     if event.inaxes == self.ax:
-    #         position = np.array([[int(event.ydata), int(event.xdata)]])
-    #         position_list_type = [int(event.ydata), int(event.xdata)]
-    #         self.addDampingArea(center=position_list_type, damping_factor = self.slider_1.val, radius = self.slider_2.val)
-    #         # Store the point for further processing
-    #         self.UIaddDampingAreaClickPointStorage = np.append(self.UIaddDampingAreaClickPointStorage, position, axis=0)
-    #         self.UIaddDampingAreaClickPointPlot.set_data(self.UIaddDampingAreaClickPointStorage.T[1], self.UIaddDampingAreaClickPointStorage.T[0])
-    #         self.updateFigure()
-    # def UIaddDampingAreaClear(self):
-    #     # Anything that is still not clean
-    #     self.fig.canvas.mpl_disconnect(self.UIaddDampingAreaButtonConnection)
-    #     self.UIaddDampingAreaClickPointPlot.remove()
-    #     pass
-
-############### SOME STORE CODE
-
-
 ###########################################
     def clear_all_UI_subWidgets(self):
         # if self.UIaddCircleSpringMode:
@@ -646,26 +518,6 @@ class MyButton:
     def remove_dependent_widgets_objects(self, text):
         for object in self.buttons_widgets_objects[text]:
             object.active = False
-
-
-
-    # def on_mouse_press(self, event):
-    #     if event.inaxes == self.ax:
-    #         self.drawing = True
-    # def on_mouse_release(self, event):
-    #     self.drawing = False
-    # def on_mouse_move(self, event):
-    #     if event.inaxes == self.ax and self.drawing:
-    #         x = int(event.xdata)
-    #         y = int(event.ydata)
-    #         self.image_array[y, x] = 255  # Set the pixel to white while moving
-    #         self.ax.imshow(self.image_array.astype(np.uint8), cmap='gray')
-    #         self.fig.canvas.draw()
-
-
-# Create a random 2D NumPy array as an example image
-
-
 
 image_array = BuildEnvironment()
 image_array.draw_on_image()
