@@ -32,13 +32,13 @@ This section indicates some of the path and the purpose of the codes provided th
 
 - [ROS2_package/haptic/haptic](ROS2_package/haptic/haptic): This is where the main codes for controlling the robot reside.
 
-    + hardware_interface.py is for communicating with the microcontroller, and needed to be modified for different setup.
+    + [hardware_interface.py](ROS2_package/haptic/haptic/hardware_interface.py) is for communicating with the microcontroller, and needed to be modified for different setup.
 
-    + force_end_effector_control.py is for controlling the robot to generate the required force, which is the main purpose of the project.
+    + [force_end_effector_control.py](ROS2_package/haptic/haptic/force_end_effector_control.py) is for controlling the robot to generate the required force, which is the main purpose of the project.
 
-    + UI.py is for visualizing the robot.
+    + [UI.py](ROS2_package/haptic/haptic/UI.py) is for visualizing the robot.
 
-    + module_my_math.py is my implementation of the importance Maths used in the project.
+    + [module_my_math.py](ROS2_package/haptic/haptic/module_my_math.py) is my implementation of the importance Maths used in the project.
 
 - [ROS2_package/other_things/other_things](ROS2_package/other_things/other_things): This is where the codes used for a Jacobian-based task space controller reside. It is an auxiliary objective of the project. Luckily, the [ROS2_package/other_things/launch/jacobian_controller_launch.py](ROS2_package/other_things/launch/jacobian_controller_launch.py) helps launch the neccesary nodes.
 
