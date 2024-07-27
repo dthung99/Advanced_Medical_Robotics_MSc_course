@@ -22,8 +22,6 @@ $$ \tau = J^T \cdot F $$
 
 - Additionally, I did identify the dynamic and friction models of the robot to aid the system.
 
-- The robot is 
-
 # Result:
 
 I got 8.3/10 for my report.
