@@ -2,6 +2,8 @@
 
 This is my project for the 'Advanced Medical Robotics' module of my MSc at King's College London, whose main focus is about control systems. I create this repository long after the project finished. The codes are somwhat commented, however, the directory structure is not really well formatted.
 
+The project comprise of a 3 degree-of-freedom planar robot that is built from 3 3D-printed robot arms rotated by Dynamixel XC330-M288-T motors. They are controlled by a OpenRB-150 microcontroller, which is connected with a Raspberry Pi 4 through USB. The Raspberry Pi ran on Linux and was programmed through an SSH Shell in VSCode.
+
 # Aim and Objectives:
 
 Building a haptic device with a 3 degree-of-freedom planar robot. 
@@ -19,6 +21,8 @@ $$ \tau = J^T \cdot F $$
 
 
 - Additionally, I did identify the dynamic and friction models of the robot to aid the system.
+
+- The robot is 
 
 # Result:
 
