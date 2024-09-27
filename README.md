@@ -4,6 +4,8 @@ This is my project for the 'Advanced Medical Robotics' module of my MSc at King'
 
 The setup comprises a 3 degree-of-freedom planar robot that is built from 3 3D-printed robot arms rotated by Dynamixel XC330-M288-T motors. They are controlled by a OpenRB-150 microcontroller, which is connected with a Raspberry Pi 4 through USB. The Raspberry Pi ran on Linux and was programmed through an SSH Shell in VSCode.
 
+![robots](images/robot.png)
+
 # Aim and Objectives:
 
 Building a haptic device with a 3 degree-of-freedom planar robot. 
